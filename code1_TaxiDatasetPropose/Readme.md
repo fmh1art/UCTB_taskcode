@@ -46,8 +46,11 @@ else:
 # 实验环境
 
 (1) python: 3.7.13
+
 (2) numpy: 1.21.5
+
 (3) pickle: 0.7.5
+
 (4) pandas: 1.3.5
 
 # 运行的结果
@@ -77,3 +80,24 @@ else:
 我们将Grid格式下数据较多的150个网格进行切分，每个网格切分成了16个网格，每个网格被认为是一个独立的节点。这2400个节点的数据条数最多的为57663条，所以，将[1, 57663]切分成116个长度为500的区间，统计数据条数位于某个区间的节点个数
 
 ![](./pic/node_result.png)
+
+## 构建的UCTB数据集结构
+
+```
+dataset[TimeFitness]:<class 'int'>
+dataset[TimeRange]:<class 'list'>  (len=2)
+dataset[Node]:<class 'dict'>{
+	dataset[Node][TrafficNode]:<class 'numpy.ndarray'>  (shape=(2400,))
+	dataset[Node][TrafficMonthlyInteraction]:<class 'NoneType'>
+	dataset[Node][StationInfo]:<class 'list'>  (len=(2400, 5))
+	dataset[Node][POI]:<class 'list'>  (len=0)
+}
+dataset[Grid]:<class 'dict'>{
+	dataset[Grid][TrafficGrid]:<class 'numpy.ndarray'>  (shape=(81049, 30, 30))
+	dataset[Grid][GridLatLng]:<class 'list'>  (len=(901, 2))
+	dataset[Grid][POI]:<class 'list'>  (len=0)
+}
+dataset[ExternalFeature]:<class 'dict'>{
+	dataset[ExternalFeature][Weather]:<class 'list'>  (len=0)
+}
+```
